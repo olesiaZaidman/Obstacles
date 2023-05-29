@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.WSA;
 
@@ -39,7 +40,7 @@ public class Dropper : MonoBehaviour
     {
         if (Physics.Raycast(transform.position, -Vector3.up, out hit, 100f))
         {
-            if (hit.transform.CompareTag("InnerWall"))
+            if (hit.transform.CompareTag("InnerWall") || hit.transform.CompareTag("Spinner") )
             {
                 print("We hit the " + hit.transform.name+ " at " + hit.transform.position);
                 Destroy(gameObject);
@@ -50,7 +51,7 @@ public class Dropper : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.collider.gameObject.CompareTag("InnerWall"))
+        if (other.collider.gameObject.CompareTag("InnerWall") || other.collider.gameObject.CompareTag("Spinner"))
         {
             Destroy(gameObject);
         }
