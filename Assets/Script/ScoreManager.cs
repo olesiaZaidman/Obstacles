@@ -8,6 +8,15 @@ public class ScoreManager : MonoBehaviour
     static int hits;
     public static int Score { get { return score; } }
     public static int Hits { get { return hits; } }
+
+    static bool isFinishLevel = false;
+
+    public static bool IsFinishLevel { get { return isFinishLevel; } }
+
+    public static void FinishLevel()
+    {
+        isFinishLevel = true;
+    }
     void Start()
     {
         RestartScore();

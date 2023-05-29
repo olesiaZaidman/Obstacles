@@ -20,7 +20,6 @@ public class ObjectHit : MonoBehaviour
     {
         if (other.collider.gameObject.CompareTag("Player") && !hasBumped)
         {
-            Debug.Log("Player hit us!");
             hasBumped = true;
             mesh.material.color = bumpedColor;
             ScoreManager.AddScore(100);

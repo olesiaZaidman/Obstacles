@@ -13,8 +13,6 @@ public class Dropper : MonoBehaviour
     void Update()
     {
         DestroyIfThereIsAWall();
-
-
         timer += Time.deltaTime;
 
         // Check if the timer has reached the desired interval
@@ -32,7 +30,6 @@ public class Dropper : MonoBehaviour
 
     void ActivatedGravity()
     {
-     //   Debug.Log(Time.time);
         GetComponent<Rigidbody>().useGravity = true;
     }
 
@@ -42,7 +39,7 @@ public class Dropper : MonoBehaviour
         {
             if (hit.transform.CompareTag("InnerWall") || hit.transform.CompareTag("Spinner") )
             {
-                print("We hit the " + hit.transform.name+ " at " + hit.transform.position);
+               // print("We hit the " + hit.transform.name+ " at " + hit.transform.position);
                 Destroy(gameObject);
                 //hit.transform.name//or hit.distance
             }

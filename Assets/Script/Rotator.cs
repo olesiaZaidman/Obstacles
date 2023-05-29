@@ -9,14 +9,14 @@ public class Rotator : MonoBehaviour
     float speed = 30f;
     void Start()
     {
-        direction = GetRandomInt();
+        direction = GetRandomIntForDirection();
     }
     void Update()
     {
         transform.Rotate(new Vector3(0, direction, 0) * Time.deltaTime * speed, Space.World);
     }
 
-    private int GetRandomInt()
+    private int GetRandomIntForDirection()
     {
         float randomFloat = Random.Range(0f, 1f);
 
