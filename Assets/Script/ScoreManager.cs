@@ -12,7 +12,6 @@ public class ScoreManager : MonoBehaviour
     static bool isFinishLevel = false;
 
     public static bool IsFinishLevel { get { return isFinishLevel; } }
-
     public static void FinishLevel()
     {
         isFinishLevel = true;
@@ -31,8 +30,9 @@ public class ScoreManager : MonoBehaviour
     public static void AddScore(int points)
     {
         score += points;
+        GamePlayTimer.PenaltyTimeEvent();
         hits++;        //hits += 1;
-        print(score);
-        print("You bumped: "+ hits +" times");
+       // print(score);
+        //print("You bumped: "+ hits +" times");
     }
 }
