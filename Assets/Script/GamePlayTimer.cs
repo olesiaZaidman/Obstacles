@@ -8,10 +8,14 @@ public class GamePlayTimer : MonoBehaviour
 {
     public TextMeshProUGUI timeText;
     float extraPenaltyTime = 5;
+
     DateTime startTime;
     TimeSpan elapsedTime;
     TimeSpan penaltyTime;
+
     public static TimeSpan finishTime; //Timer.finishTime
+    
+
     private bool timerRunning = false;
     private static bool isPenalty = false;
 
@@ -84,6 +88,7 @@ public class GamePlayTimer : MonoBehaviour
     TimeSpan SaveTimeScore()
     {
         finishTime = GetDisplayTime();
+        ScoreManager.ScoreOverallTime(finishTime);
         //  Debug.Log("Your Score: " + finishTime.ToString(@"mm\:ss"));
         return finishTime;
     }
