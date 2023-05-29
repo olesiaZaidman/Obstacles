@@ -106,7 +106,7 @@ public class PlayerPrefsLeaderBoard : MonoBehaviour
     //    for (int i = 4; i >= 0; i--)
     //    {
     //        //check time and also check if time slot is unsaved
-    //        if (ScoreManager.gameDurationInSeconds < savedTimes[i] || savedTimes[i] == 0)
+    //        if (FinishLevelManager.gameDurationInSeconds < savedTimes[i] || savedTimes[i] == 0)
     //        {
     //            highScore = true;
     //            //if it is less than our current position make that our current position
@@ -120,7 +120,7 @@ public class PlayerPrefsLeaderBoard : MonoBehaviour
     //    //if we have high score insert it into our times list and then set the new best times  playerprefs
     //    if (highScore)
     //    {
-    //        savedTimes.Insert(scorePosition, ScoreManager.gameDurationInSeconds);
+    //        savedTimes.Insert(scorePosition, FinishLevelManager.gameDurationInSeconds);
     //        SetBestTimes();
     //    }
     //}

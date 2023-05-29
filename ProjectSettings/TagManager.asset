@@ -6,6 +6,7 @@ TagManager:
   tags:
   - InnerWall
   - Spinner
+  - Ground
   layers:
   - Default
   - TransparentFX

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GamePlayTimer : MonoBehaviour
 {
@@ -19,8 +20,16 @@ public class GamePlayTimer : MonoBehaviour
     private bool timerRunning = false;
     private static bool isPenalty = false;
 
+
+    public Color targetColor = new Color(0.1313634f, 0.6766795f, 0.8490566f);
+    private Color originalColor;
+    public float colorChangeDuration = 1f;
+
+    public UnityEvent penaltyAnim;
+    public GameObject penaltyText;
     void Start()
     {
+        originalColor = timeText.color;
         timerRunning = false;
         StartTimer();
     }
@@ -51,7 +60,9 @@ public class GamePlayTimer : MonoBehaviour
 
             if (isPenalty)
             {
+                StartCoroutine(ChangeTextColorCoroutine());
                 AddPenaltyTime();
+                penaltyAnim.Invoke();
                 isPenalty = false; // Reset the event flag
             }
 
@@ -59,7 +70,7 @@ public class GamePlayTimer : MonoBehaviour
             //   Debug.Log("Current time: " + GetDisplayTime().ToString(@"hh\:mm\:ss\.fff"));
         }
 
-        if (timerRunning && ScoreManager.IsFinishLevel)
+        if (timerRunning && FinishLevelManager.IsFinishLevel)
         {
             StopTimer();
             SaveTimeScore();
@@ -91,7 +102,7 @@ public class GamePlayTimer : MonoBehaviour
         finishTime = GetDisplayTime();
         LevelsData.SaveScoreOverallTime(finishTime);
 
-        // ScoreManager.gameDurationInSeconds = (float)finishTime.TotalSeconds;
+        // FinishLevelManager.gameDurationInSeconds = (float)finishTime.TotalSeconds;
         //  Debug.Log("Your Score: " + finishTime.ToString(@"mm\:ss"));
         return finishTime;
     }
@@ -99,5 +110,28 @@ public class GamePlayTimer : MonoBehaviour
     TimeSpan GetDisplayTime()
     {
         return elapsedTime + penaltyTime;
+    }
+
+    private IEnumerator ChangeTextColorCoroutine()
+    {
+        // Change the color to the target color
+        timeText.color = targetColor;
+
+        // Wait for the specified duration
+        yield return new WaitForSeconds(colorChangeDuration);
+
+        // Revert the color back to the original color
+        timeText.color = originalColor;
+    }
+
+    public void PlayPenaltyAnimation()
+    {
+        StartCoroutine(PlayPenaltyAnimationRotine());
+    }
+    public IEnumerator PlayPenaltyAnimationRotine()
+    {
+        penaltyText.SetActive(true);
+        yield return new WaitForSeconds(0.8f);
+        penaltyText.SetActive(false);
     }
 }

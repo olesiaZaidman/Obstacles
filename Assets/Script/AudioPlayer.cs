@@ -16,6 +16,7 @@ public class AudioPlayer : MonoBehaviour
 
     [Header("Score")]
     [SerializeField]  AudioClip  collisionSFX;
+    [SerializeField] AudioClip smashSFX;
     [SerializeField]  AudioClip  finishSFX;
     [SerializeField][Range(0f, 1f)]  float gameFxVolume;
 
@@ -58,7 +59,10 @@ public class AudioPlayer : MonoBehaviour
         PlaySFXClip(sceneLoaded, uiVolume);
     }
 
-
+    public void PlaySmashSFX()
+    {
+        PlaySFXClip(smashSFX, gameFxVolume);
+    }
     void PlaySFXClip(AudioClip _clip, float _volume)
     {
         Vector3 _cameraPosition = Camera.main.transform.position;

@@ -7,11 +7,14 @@ using UnityEngine.SceneManagement;
 public class LevelsData : MonoBehaviour
 {    
     static LevelsData instance;
-
+    static float difficulty = 1f;
     static int score;
     static int hits;
     public static int Score { get { return score; } }
     public static int Hits { get { return hits; } }
+    public static float Difficulty { get { return difficulty; } }
+
+
     public static TimeSpan overallTime; //Timer.finishTime
    // public static float gameDurationInSeconds = 0;
 
@@ -53,10 +56,18 @@ public class LevelsData : MonoBehaviour
     public static void RestartScore()
     {
         //gameDurationInSeconds = 0;
+        difficulty = 1f;
         overallTime = TimeSpan.Zero;
         score = 0;
         hits = 0;
         Debug.Log("Restarted");    
+    }
+
+    public static float IncreaseGameDifficulty(float _mod)
+    {
+        difficulty *= _mod;
+        Debug.Log("difficulty: "+ difficulty);
+        return difficulty;
     }
 
 

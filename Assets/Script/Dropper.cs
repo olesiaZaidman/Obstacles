@@ -9,7 +9,13 @@ public class Dropper : MonoBehaviour
     private float timer = 0f;
     private float interval = 3f;
     RaycastHit hit;
-    //InnerWall
+
+
+    AudioPlayer audioPlayer;
+    void Awake()
+    {
+        audioPlayer = FindObjectOfType<AudioPlayer>();
+    }
     void Update()
     {
         DestroyIfThereIsAWall();
@@ -31,6 +37,7 @@ public class Dropper : MonoBehaviour
     void ActivatedGravity()
     {
         GetComponent<Rigidbody>().useGravity = true;
+       
     }
 
     void DestroyIfThereIsAWall()
@@ -51,6 +58,11 @@ public class Dropper : MonoBehaviour
         if (other.collider.gameObject.CompareTag("InnerWall") || other.collider.gameObject.CompareTag("Spinner"))
         {
             Destroy(gameObject);
+        }
+
+        if (other.collider.gameObject.CompareTag("Ground")) 
+        {
+            audioPlayer.PlaySmashSFX();
         }
     }
 }

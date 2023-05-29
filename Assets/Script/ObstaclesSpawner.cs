@@ -60,8 +60,9 @@ public class ObstaclesSpawner : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("SpawnCube", startTime, repeatCubeTime);
-        InvokeRepeating("SpawnSphere", startTime, repeatSphereTime);
+        Debug.Log("Current Difficulty: "+ LevelsData.Difficulty);
+        InvokeRepeating("SpawnCube", startTime, repeatCubeTime * LevelsData.Difficulty);
+        InvokeRepeating("SpawnSphere", startTime, repeatSphereTime* LevelsData.Difficulty);
     }
 
     void SpawnCube()

@@ -23,12 +23,12 @@ public class Finish : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && !ScoreManager.IsFinishLevel)
+        if (other.gameObject.CompareTag("Player") && !FinishLevelManager.IsFinishLevel)
         {
             Debug.Log("Player finishes level!");
             mesh.material.color = succesColor;
             audioPlayer.PlayFinishSFX();
-            ScoreManager.FinishLevel();
+            FinishLevelManager.FinishLevel();
             finishFX.Play();
             finish.Invoke();
         }

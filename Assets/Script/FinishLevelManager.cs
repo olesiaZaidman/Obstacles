@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreManager : MonoBehaviour
+public class FinishLevelManager : MonoBehaviour
 {
     static bool isFinishLevel = false;
     public static bool IsFinishLevel { get { return isFinishLevel; } }

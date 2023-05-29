@@ -38,6 +38,7 @@ public class SceneLoadManager : MonoBehaviour
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         int nextSceneIndex = (currentSceneIndex + 1) % SceneManager.sceneCountInBuildSettings;
+        float dificultyModifier = 0.5f;
         // Debug.Log("nextSceneIndex "+ nextSceneIndex);
         /*We calculate the index of the next scene by incrementing the current scene index by 1 and 
          * using the modulo operator (%) with SceneManager.sceneCountInBuildSettings. 
@@ -55,10 +56,10 @@ public class SceneLoadManager : MonoBehaviour
 
         print("nextSceneIndex to Load: " + nextSceneIndex);
 
-        if (nextSceneIndex == 1)
-        {
-            LevelsData.RestartScore();
-        }
+        //if (nextSceneIndex == 1)
+        //{
+        //    LevelsData.RestartScore();
+        //}
 
 
         if (nextSceneIndex == SceneManager.sceneCountInBuildSettings - 1)
@@ -66,7 +67,10 @@ public class SceneLoadManager : MonoBehaviour
             LevelsData.SaveData();
             print("Data is saved: " + LevelsData.overallTime);
         }
-
+        if (currentSceneIndex > 0)
+        {
+            LevelsData.IncreaseGameDifficulty(dificultyModifier);
+        }
         SceneManager.LoadScene(nextSceneIndex);
     }
 
@@ -93,7 +97,7 @@ public class SceneLoadManager : MonoBehaviour
     {
         if (overlayScreen != null && _sceneIndex == 1)
         {
-          overlayScreen.GetComponent<Image>().CrossFadeAlpha(1, fadingTimeBudget, false);
+           overlayScreen.GetComponent<Image>().CrossFadeAlpha(1, fadingTimeBudget, false);
             LevelsData.RestartScore();
         }
 
