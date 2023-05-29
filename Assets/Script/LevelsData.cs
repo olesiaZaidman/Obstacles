@@ -50,7 +50,6 @@ public class LevelsData : MonoBehaviour
         RestartScore();
     }
 
-
     public static void RestartScore()
     {
         //gameDurationInSeconds = 0;

@@ -79,20 +79,13 @@ public class SceneLoadManager : MonoBehaviour
 
     IEnumerator LoadScene(int _sceneIndex, float _delay)
     {
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        int nextSceneIndex = (currentSceneIndex + 1) % SceneManager.sceneCountInBuildSettings;
-
         if (overlayScreen != null && _sceneIndex == 1)
         {
           overlayScreen.GetComponent<Image>().CrossFadeAlpha(1, fadingTimeBudget, false);
+            LevelsData.RestartScore();
         }
 
         yield return new WaitForSeconds(_delay);
-
-        if (nextSceneIndex == 1)
-        {
-            LevelsData.RestartScore();
-        }
 
         SceneManager.LoadScene(_sceneIndex);
     }
