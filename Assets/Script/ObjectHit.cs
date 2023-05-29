@@ -10,7 +10,11 @@ public class ObjectHit : MonoBehaviour
     bool hasBumped = false;
 
     MeshRenderer mesh;
-
+    AudioPlayer audioPlayer;
+    void Awake()
+    {
+        audioPlayer = FindObjectOfType<AudioPlayer>();
+    }
     private void Start()
     {
         mesh = GetComponent<MeshRenderer>();
@@ -23,6 +27,7 @@ public class ObjectHit : MonoBehaviour
             hasBumped = true;
             mesh.material.color = bumpedColor;
             LevelsData.AddScore(100);
+            audioPlayer.PlayCollisionSFX();
         }
 
 

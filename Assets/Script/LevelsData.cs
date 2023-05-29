@@ -17,8 +17,8 @@ public class LevelsData : MonoBehaviour
 
   public static List<TimeSpan> finishScores = new List<TimeSpan>();
 
-    static TimeSpan bestTimeScore;
-    int currentSceneIndex;
+   // static TimeSpan bestTimeScore;
+  //  int currentSceneIndex;
     public const int maxScores = 5;
 
     void Awake()

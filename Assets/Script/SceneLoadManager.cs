@@ -10,11 +10,16 @@ public class SceneLoadManager : MonoBehaviour
     float sceneLoadDelay = 1f;
     float fadingTimeBudget = 1f;
 
+    AudioPlayer audioPlayer;
+ 
     void Awake()
     {
+        audioPlayer = FindObjectOfType<AudioPlayer>();
+
         if (overlayScreen != null)
         { 
-            overlayScreen.GetComponent<Image>().CrossFadeAlpha(0, fadingTimeBudget, false); 
+            overlayScreen.GetComponent<Image>().CrossFadeAlpha(0, fadingTimeBudget, false);
+            audioPlayer.PlaySceneLoadedSFX();
         }      
     }
 
@@ -68,13 +73,20 @@ public class SceneLoadManager : MonoBehaviour
 
     public void LoadScene(int _sceneIndex)
     {
+        audioPlayer.PlayClickSFX();
         StartCoroutine(LoadScene(_sceneIndex, sceneLoadDelay));
     }
 
     public void QuitGame()
     {
+        audioPlayer.PlayClickSFX();
         Application.Quit();
     }
+
+    //public void PlayClick()
+    //{
+    //    audioPlayer.PlayClickSFX();
+    //}
 
 
     IEnumerator LoadScene(int _sceneIndex, float _delay)

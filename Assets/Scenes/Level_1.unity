@@ -5231,10 +5231,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: '>>Plyer_Limo<<'
       objectReference: {fileID: 0}
-    - target: {fileID: 5284130936907401110, guid: b3b656c9c0b732a4eba41dd0c3fc07d2, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 6667907675646821602, guid: b3b656c9c0b732a4eba41dd0c3fc07d2, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -5279,8 +5275,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6013566926046933516, guid: b3b656c9c0b732a4eba41dd0c3fc07d2, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
