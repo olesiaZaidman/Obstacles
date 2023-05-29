@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 public class Finish : MonoBehaviour
 {
     Color succesColor = new Color(0.7254902f, 1f, 0f);
     Color finishFlagOriginColor = new Color(1f, 0f, 0.06907606f);
     MeshRenderer mesh;
    public ParticleSystem finishFX;
+
+    public UnityEvent finish;
     private void Start()
     {
         mesh = GetComponent<MeshRenderer>();
@@ -21,6 +23,7 @@ public class Finish : MonoBehaviour
             mesh.material.color = succesColor;
             ScoreManager.FinishLevel();
             finishFX.Play();
+            finish.Invoke();
         }
     }
 }
