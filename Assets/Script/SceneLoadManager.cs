@@ -15,8 +15,7 @@ public class SceneLoadManager : MonoBehaviour
         if (overlayScreen != null)
         { 
             overlayScreen.GetComponent<Image>().CrossFadeAlpha(0, fadingTimeBudget, false); 
-        }
-       
+        }      
     }
 
 
@@ -39,12 +38,29 @@ public class SceneLoadManager : MonoBehaviour
          * using the modulo operator (%) with SceneManager.sceneCountInBuildSettings. 
          * This ensures that the next scene index loops back to 0 if it exceeds the number of scenes in the build.*/
 
+
+
+
         if (overlayScreen != null)
         {
             overlayScreen.GetComponent<Image>().CrossFadeAlpha(1, fadingTimeBudget, false);
         }
 
         yield return new WaitForSeconds(_delay);
+
+        print("nextSceneIndex to Load: " + nextSceneIndex);
+
+        if (nextSceneIndex == 1)
+        {
+            LevelsData.RestartScore();
+        }
+
+
+        if (nextSceneIndex == SceneManager.sceneCountInBuildSettings - 1)
+        {            
+            LevelsData.SaveData();
+            print("Data is saved: " + LevelsData.overallTime);
+        }
 
         SceneManager.LoadScene(nextSceneIndex);
     }
@@ -55,15 +71,28 @@ public class SceneLoadManager : MonoBehaviour
         StartCoroutine(LoadScene(_sceneIndex, sceneLoadDelay));
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
 
     IEnumerator LoadScene(int _sceneIndex, float _delay)
     {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = (currentSceneIndex + 1) % SceneManager.sceneCountInBuildSettings;
+
         if (overlayScreen != null && _sceneIndex == 1)
         {
           overlayScreen.GetComponent<Image>().CrossFadeAlpha(1, fadingTimeBudget, false);
         }
 
         yield return new WaitForSeconds(_delay);
+
+        if (nextSceneIndex == 1)
+        {
+            LevelsData.RestartScore();
+        }
 
         SceneManager.LoadScene(_sceneIndex);
     }

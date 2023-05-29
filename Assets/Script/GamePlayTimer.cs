@@ -28,7 +28,7 @@ public class GamePlayTimer : MonoBehaviour
     void StartTimer()
     {
         if (!timerRunning)
-        {
+        {           
             startTime = DateTime.Now;
             timerRunning = true;
            // Debug.Log("Timer started" + elapsedTime.ToString(@"hh\:mm\:ss\.fff"));
@@ -38,6 +38,7 @@ public class GamePlayTimer : MonoBehaviour
     void UpdateTimer()
     {
         elapsedTime = DateTime.Now - startTime;
+        
     }
 
 
@@ -65,7 +66,7 @@ public class GamePlayTimer : MonoBehaviour
         }
     }
 
-    void  AddPenaltyTime()
+    void AddPenaltyTime()
     {
         penaltyTime = penaltyTime.Add(TimeSpan.FromSeconds(extraPenaltyTime));
 
@@ -88,7 +89,9 @@ public class GamePlayTimer : MonoBehaviour
     TimeSpan SaveTimeScore()
     {
         finishTime = GetDisplayTime();
-        ScoreManager.ScoreOverallTime(finishTime);
+        LevelsData.SaveScoreOverallTime(finishTime);
+
+        // ScoreManager.gameDurationInSeconds = (float)finishTime.TotalSeconds;
         //  Debug.Log("Your Score: " + finishTime.ToString(@"mm\:ss"));
         return finishTime;
     }

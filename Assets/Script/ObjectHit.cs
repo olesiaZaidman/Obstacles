@@ -22,7 +22,7 @@ public class ObjectHit : MonoBehaviour
         {
             hasBumped = true;
             mesh.material.color = bumpedColor;
-            ScoreManager.AddScore(100);
+            LevelsData.AddScore(100);
         }
 
 
