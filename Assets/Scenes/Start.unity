@@ -2731,6 +2731,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: QuitButton
       objectReference: {fileID: 0}
+    - target: {fileID: 1770580601103072224, guid: f0fbcefe752f3a746851f32a106eaa4f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6098996354876384501, guid: f0fbcefe752f3a746851f32a106eaa4f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2873,7 +2877,7 @@ GameObject:
   - component: {fileID: 4735174939820912574}
   - component: {fileID: 6801236012637155485}
   m_Layer: 0
-  m_Name: '>>Plyer_Limo<<'
+  m_Name: '>>Plyer'
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
