@@ -61,8 +61,8 @@ public class SceneLoadManager : MonoBehaviour
         if (nextSceneIndex == SceneManager.sceneCountInBuildSettings - 1)
         {            
             LevelsData.SaveData();
-            print("SceneManager.sceneCountInBuildSettings: " + SceneManager.sceneCountInBuildSettings);
-            print("nextSceneIndex: " + nextSceneIndex);
+         //   print("SceneManager.sceneCountInBuildSettings: " + SceneManager.sceneCountInBuildSettings);
+         //   print("nextSceneIndex: " + nextSceneIndex);
             print("Data is saved: " + LevelsData.overallTime);
 
         }

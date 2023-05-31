@@ -23,8 +23,8 @@ public class GamePlayTimer : MonoBehaviour
     private bool timerRunning = false;
     private static bool isPenalty = false;
 
-
-    public Color targetColor = new Color(0.1313634f, 0.6766795f, 0.8490566f);
+    
+     Color targetColor = new Color(1f, 0.2396226f, 0.3264038f); //new Color(0.1313634f, 0.6766795f, 0.8490566f);
     private Color originalColor;
     public float colorChangeDuration = 1f;
 

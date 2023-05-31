@@ -66,7 +66,7 @@ public class LevelsData : MonoBehaviour
     public static float IncreaseGameDifficulty(float _mod)
     {
         difficulty *= _mod;
-        Debug.Log("difficulty: "+ difficulty);
+       // Debug.Log("difficulty: "+ difficulty);
         return difficulty;
     }
 

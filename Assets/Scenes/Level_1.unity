@@ -5712,7 +5712,6 @@ MonoBehaviour:
   timeText: {fileID: 597621921}
   totalTimerText: {fileID: 1307293735}
   haloTotalFX: {fileID: 513105636}
-  targetColor: {r: 0.1313634, g: 0.6766795, b: 0.8490566, a: 1}
   colorChangeDuration: 1
   penaltyAnim:
     m_PersistentCalls:
@@ -8343,7 +8342,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 963194227}
-  m_PlaneDistance: 7
+  m_PlaneDistance: 5.14
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
