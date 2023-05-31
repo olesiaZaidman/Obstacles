@@ -22,6 +22,15 @@ public class Leaderboard : MonoBehaviour
             if (i < finishScores.Count)
             {
                 textResultSpots[i].SetText(finishScores[i].ToString(@"mm\:ss"));
+                if (finishScores[i] == LevelsData.overallTime)
+                {
+                   // textResultSpots[i].material.color = Color.white;
+                    textResultSpots[i].color = Color.yellow;
+                }
+                else
+                {
+                    textResultSpots[i].color = Color.white;
+                }
             }
             else             
             {
@@ -29,5 +38,12 @@ public class Leaderboard : MonoBehaviour
             }
         }
 
-    } 
+    }
+
+    void ShowLatestResultInColor()
+    {
+       
+    }
+
+
 }

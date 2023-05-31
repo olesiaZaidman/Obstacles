@@ -5666,7 +5666,6 @@ MonoBehaviour:
   timeText: {fileID: 597621921}
   totalTimerText: {fileID: 1307293735}
   haloTotalFX: {fileID: 513105636}
-  targetColor: {r: 0.1313634, g: 0.6766795, b: 0.8490566, a: 1}
   colorChangeDuration: 1
   penaltyAnim:
     m_PersistentCalls:
@@ -16434,7 +16433,8 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7036213084339233317, guid: f29bdf6738704a14786bfa62e23f080b, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1754115667710497393, guid: f29bdf6738704a14786bfa62e23f080b, type: 3}
       insertIndex: 0

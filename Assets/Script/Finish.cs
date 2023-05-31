@@ -10,11 +10,13 @@ public class Finish : MonoBehaviour
    public ParticleSystem finishFX;
 
     public UnityEvent finish;
-
-    AudioPlayer audioPlayer;
+    [SerializeField] AudioClip finishSFX;
+   // AudioPlayer audioPlayer;
+    AudioSource audioS; 
     void Awake()
     {
-        audioPlayer = FindObjectOfType<AudioPlayer>();
+      //  audioPlayer = FindObjectOfType<AudioPlayer>();
+        audioS = GetComponent<AudioSource>();    
     }
     private void Start()
     {
@@ -27,7 +29,9 @@ public class Finish : MonoBehaviour
         {
            // Debug.Log("Player finishes level!");
             mesh.material.color = succesColor;
-            audioPlayer.PlayFinishSFX();
+            audioS.PlayOneShot(finishSFX, 0.6f);
+         //   audioPlayer.PlayFinishSFX();
+
             FinishLevelManager.FinishLevel();
             finishFX.Play();
             finish.Invoke();
