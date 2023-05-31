@@ -6,7 +6,7 @@ using UnityEngine;
 public class Rotator : MonoBehaviour
 {
     int direction;
-    float speed = 30f;
+    float speed = 50f;
     void Start()
     {
         direction = GetRandomIntForDirection();
