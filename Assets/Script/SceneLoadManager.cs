@@ -56,16 +56,14 @@ public class SceneLoadManager : MonoBehaviour
             overlayScreen.GetComponent<Image>().CrossFadeAlpha(1, fadingTimeBudget, false);
         }
 
-
-
     //    print("nextSceneIndex to Load: " + nextSceneIndex);
-
-
 
         if (nextSceneIndex == SceneManager.sceneCountInBuildSettings - 1)
         {            
             LevelsData.SaveData();
-           // print("Data is saved: " + LevelsData.overallTime);
+            print("SceneManager.sceneCountInBuildSettings: " + SceneManager.sceneCountInBuildSettings);
+            print("nextSceneIndex: " + nextSceneIndex);
+            print("Data is saved: " + LevelsData.overallTime);
 
         }
         if (currentSceneIndex > 0)

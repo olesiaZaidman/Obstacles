@@ -9,6 +9,8 @@ public class GamePlayTimer : MonoBehaviour
 {
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI totalTimerText;
+   // public ParticleSystem haloPenaltyFX;
+    public ParticleSystem haloTotalFX;
     float extraPenaltyTime = 5;
 
     DateTime startTime;
@@ -64,6 +66,7 @@ public class GamePlayTimer : MonoBehaviour
             {
                 StartCoroutine(ChangeTextColorCoroutine());
                 AddPenaltyTime();
+              //  StartCoroutine(PlayUIHaloEffectRoutine(haloPenaltyFX));
                 penaltyAnim.Invoke();
                 isPenalty = false; // Reset the event flag
             }
@@ -105,6 +108,7 @@ public class GamePlayTimer : MonoBehaviour
     {
         finishTime = GetDisplayTime();
         LevelsData.SaveScoreOverallTime(finishTime);
+        StartCoroutine(PlayUIHaloEffectRoutine(haloTotalFX));
         SetTotalTimer(LevelsData.overallTime);
         // FinishLevelManager.gameDurationInSeconds = (float)finishTime.TotalSeconds;
         //  Debug.Log("Your Score: " + finishTime.ToString(@"mm\:ss"));
@@ -142,10 +146,19 @@ public class GamePlayTimer : MonoBehaviour
 
     public void SetTotalTimer(TimeSpan _total)
     {
+        
         totalTimerText.SetText(_total.ToString(@"mm\:ss"));
         ActivateGlow(totalTimerText);
        // DeactivateGlow(totalTimerText);
     }
+
+    public IEnumerator PlayUIHaloEffectRoutine(ParticleSystem _effect)
+    {
+        _effect.Play();
+        yield return new WaitForSeconds(0.2f);
+        _effect.Stop();
+    }
+
 
     public void SetTimerText(TextMeshProUGUI _text, TimeSpan _time)
     {
