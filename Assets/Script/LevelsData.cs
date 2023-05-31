@@ -60,7 +60,7 @@ public class LevelsData : MonoBehaviour
         overallTime = TimeSpan.Zero;
         score = 0;
         hits = 0;
-        Debug.Log("Restarted");    
+      //  Debug.Log("Restarted");    
     }
 
     public static float IncreaseGameDifficulty(float _mod)
@@ -101,6 +101,6 @@ public class LevelsData : MonoBehaviour
         overallTime += _levelTimeToFinish;
        // gameDurationInSeconds = (float)overallTime.TotalSeconds;
 
-        Debug.Log("Your overallTime: " + overallTime.ToString(@"mm\:ss"));
+    //    Debug.Log("Your overallTime: " + overallTime.ToString(@"mm\:ss"));
     }
 }

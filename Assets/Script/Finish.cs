@@ -25,7 +25,7 @@ public class Finish : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && !FinishLevelManager.IsFinishLevel)
         {
-            Debug.Log("Player finishes level!");
+           // Debug.Log("Player finishes level!");
             mesh.material.color = succesColor;
             audioPlayer.PlayFinishSFX();
             FinishLevelManager.FinishLevel();

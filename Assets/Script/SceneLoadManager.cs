@@ -6,8 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoadManager : MonoBehaviour
 {
+    GamePlayTimer timer;
+
     public GameObject overlayScreen;
-    float sceneLoadDelay = 1f;
+    float sceneLoadDelay = 1.5f;
     float fadingTimeBudget = 1f;
 
     AudioPlayer audioPlayer;
@@ -15,6 +17,7 @@ public class SceneLoadManager : MonoBehaviour
     void Awake()
     {
         audioPlayer = FindObjectOfType<AudioPlayer>();
+        timer = FindObjectOfType<GamePlayTimer>();
 
         if (overlayScreen != null)
         { 
@@ -31,6 +34,7 @@ public class SceneLoadManager : MonoBehaviour
 
     public void LoadGame()
     {
+       
         StartCoroutine(WaitAndLoad(sceneLoadDelay));
     }
 
@@ -44,7 +48,7 @@ public class SceneLoadManager : MonoBehaviour
          * using the modulo operator (%) with SceneManager.sceneCountInBuildSettings. 
          * This ensures that the next scene index loops back to 0 if it exceeds the number of scenes in the build.*/
 
-
+        yield return new WaitForSeconds(_delay);
 
 
         if (overlayScreen != null)
@@ -52,20 +56,17 @@ public class SceneLoadManager : MonoBehaviour
             overlayScreen.GetComponent<Image>().CrossFadeAlpha(1, fadingTimeBudget, false);
         }
 
-        yield return new WaitForSeconds(_delay);
 
-        print("nextSceneIndex to Load: " + nextSceneIndex);
 
-        //if (nextSceneIndex == 1)
-        //{
-        //    LevelsData.RestartScore();
-        //}
+    //    print("nextSceneIndex to Load: " + nextSceneIndex);
+
 
 
         if (nextSceneIndex == SceneManager.sceneCountInBuildSettings - 1)
         {            
             LevelsData.SaveData();
-            print("Data is saved: " + LevelsData.overallTime);
+           // print("Data is saved: " + LevelsData.overallTime);
+
         }
         if (currentSceneIndex > 0)
         {
@@ -75,10 +76,23 @@ public class SceneLoadManager : MonoBehaviour
     }
 
 
-    public void LoadScene(int _sceneIndex)
+    public void LoadAnyScene(int _sceneIndex)
     {
+        float _sceneLoadDelay = 1f;
         audioPlayer.PlayClickSFX();
-        StartCoroutine(LoadScene(_sceneIndex, sceneLoadDelay));
+        StartCoroutine(LoadSceneRoutine(_sceneIndex, _sceneLoadDelay));
+    }
+
+    public void ReloadCurrentScene(float _sceneLoadDelay)
+    {
+      //  float _sceneLoadDelay = 1f;
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        audioPlayer.PlayClickSFX();
+        if (overlayScreen != null)
+        {
+            overlayScreen.GetComponent<Image>().CrossFadeAlpha(1, fadingTimeBudget, false);
+        }
+        StartCoroutine(LoadSceneRoutine(currentSceneIndex, _sceneLoadDelay));
     }
 
     public void QuitGame()
@@ -87,13 +101,8 @@ public class SceneLoadManager : MonoBehaviour
         Application.Quit();
     }
 
-    //public void PlayClick()
-    //{
-    //    audioPlayer.PlayClickSFX();
-    //}
 
-
-    IEnumerator LoadScene(int _sceneIndex, float _delay)
+    IEnumerator LoadSceneRoutine(int _sceneIndex, float _delay)
     {
         if (overlayScreen != null && _sceneIndex == 1)
         {
